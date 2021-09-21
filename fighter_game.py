@@ -12,6 +12,7 @@ class Fighter:
         self.__description = description
         self.__agility = randrange(1,9)
         self.__healthPoints = 100 # Lors de la création d'une instance, les points de vie valent 100.
+        self.__weapon = None
 
     def get_name(self):
         """Return the name of the fighter"""
@@ -86,6 +87,9 @@ class Weapon:
         self.__damage = damage
         self.__ammos = ammos
 
+    def __repr__(self):
+        return self.get_name()
+
     def get_name(self):
         """ return the name of the fighter"""
         return self.__name
@@ -99,8 +103,12 @@ class Weapon:
         return self.__ammos
 
     def get_owner(self):
-        """ Return the owner of the Weapon"""
+        """Returns the owner of the weapon"""
         return self.__owner
+
+    def set_owner(self, owner):
+        """Returns the owner of the weapon"""
+        self.__owner = owner
 
     def summary(self):
         """Return the summary of a weapon"""
@@ -110,8 +118,12 @@ class Weapon:
         ammos='munitions:%s'%self.getAmmos()
         return '\n'.join([name, damage, ammos])
 
-    def takeweapon(self,weapon):
-        if Weapon= None:
-            pass
-        if 
+    def shoot(self, a_fighter):
+        """Shoot a fighter and return the fighter health points"""
+        if self.get_ammos()>0:
+            lostPoints = int(self.get_damage() / a_fighter.get_agility())
+            lostPoints = int(lostPoints * uniform(0.5,1)) # some random added
+            a_fighter.__health_points = a_fighter.get_health_points() - lostPoints
+            self.__ammos -= 1 # remove one ammo
+        return a_fighter.get_health_points()
 
